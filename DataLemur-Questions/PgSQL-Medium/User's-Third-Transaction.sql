@@ -1,4 +1,5 @@
 /* Uber
+URL: https://datalemur.com/questions/sql-third-transaction
 This is the same question as problem #11 in the SQL Chapter of Ace the Data Science Interview!
 
 Assume you are given the table below on Uber transactions made by users.
