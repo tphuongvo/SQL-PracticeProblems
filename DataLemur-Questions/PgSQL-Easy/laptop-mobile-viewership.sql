@@ -1,4 +1,7 @@
 /*
+New York Times
+URL: https://datalemur.com/questions/laptop-mobile-viewership
+
 This is the same question as problem #3 in the SQL Chapter of Ace the Data Science Interview!
 
 Assume that you are given the table below containing information on viewership by device type (where the three types are laptop, tablet, and phone). Define “mobile” as the sum of tablet and phone viewership numbers. 
