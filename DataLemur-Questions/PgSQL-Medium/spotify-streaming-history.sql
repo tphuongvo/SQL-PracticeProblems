@@ -48,6 +48,7 @@ user_id	song_id	song_plays
 As of 4 August 2022,
 User 777 has listened to the song_id 1238 for 12 times which is 11 times historically and 1 time within the week.
 User 695's streaming of the song_id 9852 is excluded from the output because the streaming date on 8 August 2022 is out of the question requirement.
+            **************************************************************************
 */
 
 SELECT COALESCE(A.user_id,B.user_id) user_id
