@@ -44,5 +44,4 @@ INNER JOIN pizza_toppings T2
   ON T1.topping_name < T2.topping_name
 INNER JOIN pizza_toppings T3
   ON T2.topping_name < T3.topping_name
-ORDER BY total_cost DESC, pizza ASC
-;
+ORDER BY total_cost DESC, pizza ASC;
