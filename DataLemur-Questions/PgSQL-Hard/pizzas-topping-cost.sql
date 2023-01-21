@@ -19,7 +19,7 @@ ingredient_cost	decimal(10,2)
 
 pizza_toppings Example Input:
 topping_name	ingredient_cost
-Pepperoni	    0.50
+Pepperoni	  0.50
 Sausage	        0.70
 Chicken	        0.55
 Extra Cheese	0.40
