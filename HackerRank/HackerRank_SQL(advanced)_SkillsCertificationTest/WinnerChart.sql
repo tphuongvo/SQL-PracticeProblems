@@ -1,0 +1,44 @@
+SET NULL "NULL";
+SET FEEDBACK OFF;
+SET ECHO OFF;
+SET HEADING OFF;
+SET WRAP OFF;
+SET LINESIZE 10000;
+SET TAB OFF;
+SET PAGES 0;
+SET DEFINE OFF;
+SET SERVEROUTPUT ON;
+
+
+WITH RANK_TABLE AS (
+            SELECT EVENT_ID, PARTICIPANT_NAME, RNK FROM (
+            SELECT EVENT_ID, PARTICIPANT_NAME, MAX_SCORE
+                ,DENSE_RANK() OVER(PARTITION BY EVENT_ID ORDER BY MAX_SCORE) AS RNK
+            FROM (
+                    SELECT EVENT_ID, PARTICIPANT_NAME
+                        ,MAX(SCORE) AS MAX_SCORE
+                    FROM SCORETABLE
+                    GROUP BY EVENT_ID, PARTICIPANT_NAME
+                    )
+            )
+            WHERE RNK < 4)
+    , MAPPING_TABLE AS (   
+            SELECT EVENT_ID
+            ,(CASE WHEN RNK = 1 THEN PARTICIPANT_NAME END) AS FIRST_
+            ,(CASE WHEN RNK = 2 THEN PARTICIPANT_NAME END) AS SECOND_
+            ,(CASE WHEN RNK = 3 THEN PARTICIPANT_NAME END) AS THIRD_
+        FROM (      
+            SELECT EVENT_ID, RNK
+                ,STRING_AGG(PARTICIPANT_NAME,',' ORDER BY PARTICIPANT_NAME) PARTICIPANT_NAME
+            FROM RANK_TABLE
+            GROUP BY event_id, RNK)
+            )
+                
+                        
+        SELECT EVENT_ID, MAX(FIRST_) FIRST_, MAX(SECOND_) SECOND_, MAX(THIRD_) THIRD_
+        FROM MAPPING_TABLE GROUP BY EVENT_ID;
+        
+               
+                 ;
+
+exit;
